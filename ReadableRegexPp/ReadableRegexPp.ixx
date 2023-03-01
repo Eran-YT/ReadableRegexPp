@@ -10,4 +10,9 @@ namespace rrpp
 	{
 		return ".";
 	}
+
+	export constexpr std::string digit()
+	{
+		return "\\d";
+	}
 }
