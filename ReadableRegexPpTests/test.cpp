@@ -3,6 +3,7 @@
 import ReadableRegexPp;
 
 #include <regex>
+
 TEST(TestReadableRegex, Any) {
 	std::string created_regex = rrpp::any();
 	EXPECT_EQ(created_regex, ".");
@@ -18,4 +19,11 @@ TEST(TestRunReadableRegex, Digit) {
 
 	EXPECT_TRUE(std::regex_match("1", created_regex));
 	EXPECT_FALSE(std::regex_match("Hello, World!", created_regex));
+}
+
+TEST(TestReadableRegexComposition, Simple) {
+	std::regex created_regex(rrpp::digit() + rrpp::any());
+
+	EXPECT_TRUE(std::regex_match("1!", created_regex));
+	EXPECT_TRUE(std::regex_match("1h", created_regex));
 }
