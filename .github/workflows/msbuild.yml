@@ -42,7 +42,7 @@ jobs:
       
   test:
     runs-on: windows-latest
-    
+    needs: build
     steps:
       - name: Test
         run: x64\${{env.BUILD_CONFIGURATION}}\ReadableRegexPpTests.exe
