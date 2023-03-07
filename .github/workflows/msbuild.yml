@@ -61,5 +61,9 @@ jobs:
     runs-on: windows-latest
     needs: build
     steps:
+      - name: Download test binaries
+        uses: actions/download-artifact@v3
+        with:
+          name: binaries
       - name: Test
         run: x64/${{env.BUILD_CONFIGURATION}}/ReadableRegexPpTests.exe
