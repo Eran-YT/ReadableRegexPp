@@ -70,4 +70,4 @@ jobs:
         with:
           name: binaries
       - name: Test
-        run: ReadableRegexPpTests
+        run: ReadableRegexPpTests.exe
