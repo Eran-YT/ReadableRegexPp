@@ -70,7 +70,4 @@ jobs:
         with:
           name: binaries
       - name: Test
-        run: | 
-          dir
-          cd x64/Release
-          dir
+        run: ReadableRegexPpTests
