@@ -49,6 +49,7 @@ jobs:
       with:
         name: binaries
         path: x64/Release
+        retention-days: 1
       
   test:
     runs-on: windows-latest
