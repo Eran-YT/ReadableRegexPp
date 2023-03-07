@@ -38,18 +38,22 @@ jobs:
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: nuget restore ${{env.SOLUTION_FILE_PATH}}
 
+    - name: Cache
+      uses: actions/cache@v3.2.6
+      with:
+        path: | 
+          x64/Release
+          ReadableRegexPp/x64/Release
+          ReadableRegexPpTests/x64/Release
+          
+        # An explicit key for restoring and saving the cache
+        key: build_folder
+
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_ARCH}} ${{env.SOLUTION_FILE_PATH}}
-    
-    - name: Cache
-      uses: actions/cache@v3.2.6
-      with:
-        path: x64/Release
-        # An explicit key for restoring and saving the cache
-        key: build_folder
     
     - name: Archive binaries
       uses: actions/upload-artifact@v3.1.2
@@ -66,4 +70,7 @@ jobs:
         with:
           name: binaries
       - name: Test
-        run: cmd /c x64\${{env.BUILD_CONFIGURATION}}\ReadableRegexPpTests.exe
+        run: | 
+          dir
+          cd x64/Release
+          dir
