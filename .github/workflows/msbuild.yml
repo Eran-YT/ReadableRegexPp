@@ -66,4 +66,4 @@ jobs:
         with:
           name: binaries
       - name: Test
-        run: x64/${{env.BUILD_CONFIGURATION}}/ReadableRegexPpTests.exe
+        run: cmd /c x64\${{env.BUILD_CONFIGURATION}}\ReadableRegexPpTests.exe
